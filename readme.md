@@ -168,11 +168,8 @@ You may want to add this command to your CI/CD to keep only certain deployments 
 ```
 kubectl get deploy
 NAME            READY   UP-TO-DATE   AVAILABLE   AGE
-playlists-api   1/1     1            1           8h
-playlists-db    1/1     1            1           8h
-videos-api      1/1     1            1           8h
-videos-db       1/1     1            1           8h
-videos-web      1/1     1            1           8h
+schedule-api    1/1     1            1           8h
+tasks-api       1/1     1            1           8h
 
 # Lets manually inject istio sidecar into our Ingress Controller:
 
