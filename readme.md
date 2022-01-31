@@ -27,7 +27,7 @@ Lets create a Kubernetes cluster to play with using [kind](https://kind.sigs.k8s
 kind create cluster --name istio --image kindest/node:v1.19.1
 ```
 
-## Deploy our microservices (Video catalog)
+## Deploy our microservices
 
 ```
 # ingress controller
@@ -143,7 +143,7 @@ istioctl proxy-status
 
 ```
 
-# Mesh our video catalog services
+# Mesh our services
 
 There are 2 ways to mesh:
 
@@ -189,7 +189,7 @@ Let's run a `curl` loop to generate some traffic to our site </br>
 We'll make a call to `/swagger-ui.html` and to simulate the browser making a call to get the schedules
 
 ```
-While ($true) { curl -UseBasicParsing http://servicemesh.demo/home/;curl -UseBasicParsing http://servicemesh.demo/api/playlists; Start-Sleep -Seconds 1;}
+While ($true) { curl -UseBasicParsing http://servicemesh.demo/swagger-ui.html; Start-Sleep -Seconds 1;}
 ```
 
 
@@ -228,29 +228,29 @@ kubectl -n istio-system port-forward svc/kiali 20001
 
 ## Auto Retry
 
-Let's add a fault in the `videos-api` by setting `env` variable `FLAKY=true`
+Let's add a fault in the `schedule-api` by setting `env` variable `FLAKY=true`
 
 ```
-kubectl edit deploy videos-api
+kubectl edit deploy schedule-api
 ```
 
 ```
-kubectl apply -f kubernetes/servicemesh/istio/retries/videos-api.yaml
+kubectl apply -f kubernetes/servicemesh/istio/retries/schedule-api.yaml
 ```
 
 We can describe pods using `istioctl`
 
 ```
-# istioctl x describe pod <videos-api-POD-NAME>
+# istioctl x describe pod <schedule-api-POD-NAME>
 
-istioctl x describe pod videos-api-584768f497-jjrqd
-Pod: videos-api-584768f497-jjrqd
-   Pod Ports: 10010 (videos-api), 15090 (istio-proxy)
+istioctl x describe pod schedule-api-584768f497-jjrqd
+Pod: schedule-api-584768f497-jjrqd
+   Pod Ports: 10010 (schedule-api), 15090 (istio-proxy)
 Suggestion: add 'version' label to pod for Istio telemetry.
 --------------------
-Service: videos-api
+Service: schedule-api
    Port: http 10010/HTTP targets pod port 10010
-VirtualService: videos-api
+VirtualService: schedule-api
    1 HTTP route(s)
 ```
 
@@ -265,7 +265,7 @@ istioctl analyze --namespace default
 Let's deploy V2 of our application which has a header that's under development
 
 ```
-kubectl apply -f kubernetes/servicemesh/istio/traffic-splits/videos-web-v2.yaml
+kubectl apply -f kubernetes/servicemesh/istio/traffic-splits/schedule-api-v2.yaml
 
 # we can see v2 pods
 kubectl get pods
@@ -275,7 +275,7 @@ kubectl get pods
 Let's send 50% of traffic to V1 and 50% to V2 by using a `VirtualService`
 
 ```
-kubectl apply -f kubernetes/servicemesh/istio/traffic-splits/videos-web.yaml
+kubectl apply -f kubernetes/servicemesh/istio/traffic-splits/schedule-api.yaml
 ```
 
 ## Canary Deployments
@@ -283,10 +283,10 @@ kubectl apply -f kubernetes/servicemesh/istio/traffic-splits/videos-web.yaml
 Traffic splits has its uses, but sometimes we may want to route traffic to other  <br/>
 parts of the system using feature toggles, for example, setting a `cookie`<br/>
 <br/>
-Let's send all users that have the cookie value `version=v2` to V2 of our `videos-web`.
+Let's send all users that have the cookie value `version=v2` to V2 of our `schedule-api`.
 
 ```
-kubectl apply -f kubernetes/servicemesh/istio/canary/videos-web.yaml
+kubectl apply -f kubernetes/servicemesh/istio/canary/schedule-api.yaml
 ```
 
-We can confirm this works, by setting the cookie value `version=v2` followed by accessing https://servicemesh.demo/home/ on a browser page <br/>
+We can confirm this works, by setting the cookie value `version=v2` followed by accessing https://servicemesh.demo/swagger-ui.html on a browser page <br/>
