@@ -2,10 +2,10 @@
 
 ## Dependencies
 
-brew install docker
-brew install minikube
-brew install kubectl
-brew install kind
+brew install docker<br/>
+brew install minikube<br/>
+brew install kubectl<br/>
+brew install kind<br/>
 
 ## Build our applications
 
