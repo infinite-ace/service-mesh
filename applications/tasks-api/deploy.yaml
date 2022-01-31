@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tasks-api
+  labels:
+    app: tasks-api
+spec:
+  selector:
+    matchLabels:
+      app: tasks-api
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: tasks-api
+    spec:
+      containers:
+      - name: tasks-api
+        image: tap/service-mesh:tasks-api-1.0.0
+        imagePullPolicy : IfNotPresent
+        ports:
+        - containerPort: 10011
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tasks-api
+  labels:
+    app: tasks-api
+spec:
+  type: ClusterIP
+  selector:
+    app: tasks-api
+  ports:
+    - protocol: TCP
+      name: http
+      port: 10011
+      targetPort: 10011
+---

@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: schedule-api
+  labels:
+    app: schedule-api
+spec:
+  selector:
+    matchLabels:
+      app: schedule-api
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: schedule-api
+    spec:
+      containers:
+      - name: schedule-api
+        image: tap/service-mesh:schedule-api-1.0.0
+        imagePullPolicy : IfNotPresent
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: schedule-api
+  labels:
+    app: schedule-api
+spec:
+  type: ClusterIP
+  selector:
+    app: schedule-api
+  ports:
+    - protocol: TCP
+      name: http
+      port: 80
+      targetPort: 80
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+  name: schedule-api
+spec:
+  rules:
+  - host: servicemesh.demo
+    http:
+      paths:
+      - path: /schedule(/|$)(.*)
+        backend:
+          serviceName: schedule-api
+          servicePort: 80
