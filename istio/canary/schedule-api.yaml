@@ -1,7 +1,7 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: videos-web-canary
+  name: schedule-api-canary
 spec:
   hosts:
   - servicemesh.demo
@@ -14,10 +14,10 @@ spec:
           regex: ^(.*?;)?(version=v2)(;.*)?$
     route:
     - destination:
-        host: videos-web-v2
+        host: schedule-api-v2
   - match:
     - uri:
         prefix: /
     route:
     - destination:
-        host: videos-web
+        host: schedule-api

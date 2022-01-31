@@ -180,11 +180,8 @@ kubectl -n ingress-nginx get deploy nginx-ingress-controller  -o yaml | istioctl
 
 # You can manually inject istio sidecar to every deployment like this:
 
-kubectl get deploy playlists-api -o yaml | istioctl kube-inject -f - | kubectl apply -f -
-kubectl get deploy playlists-db -o yaml | istioctl kube-inject -f - | kubectl apply -f -
-kubectl get deploy videos-api -o yaml | istioctl kube-inject -f - | kubectl apply -f -
-kubectl get deploy videos-db -o yaml | istioctl kube-inject -f - | kubectl apply -f -
-kubectl get deploy videos-web -o yaml | istioctl kube-inject -f - | kubectl apply -f -
+kubectl get deploy schedule-api -o yaml | istioctl kube-inject -f - | kubectl apply -f -
+kubectl get deploy tasks-api -o yaml | istioctl kube-inject -f - | kubectl apply -f -
 
 
 ```
@@ -192,8 +189,7 @@ kubectl get deploy videos-web -o yaml | istioctl kube-inject -f - | kubectl appl
 # TCP \ HTTP traffic
 
 Let's run a `curl` loop to generate some traffic to our site </br>
-We'll make a call to `/home/` and to simulate the browser making a call to get the playlists, <br/>
-we'll make a follow up call to `/api/playlists`
+We'll make a call to `/swagger-ui.html` and to simulate the browser making a call to get the schedules
 
 ```
 While ($true) { curl -UseBasicParsing http://servicemesh.demo/home/;curl -UseBasicParsing http://servicemesh.demo/api/playlists; Start-Sleep -Seconds 1;}

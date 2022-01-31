@@ -1,13 +1,13 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: videos-web-v2
+  name: schedule-api-v2
   labels:
-    app: videos-web-v2
+    app: schedule-api-v2
 spec:
   selector:
     matchLabels:
-      app: videos-web-v2
+      app: schedule-api-v2
   replicas: 1
   strategy:
     type: RollingUpdate
@@ -17,11 +17,11 @@ spec:
   template:
     metadata:
       labels:
-        app: videos-web-v2
+        app: schedule-api-v2
     spec:
       containers:
-      - name: videos-web-v2
-        image: tap/service-mesh:videos-web-2.0.0
+      - name: schedule-api-v2
+        image: tap/service-mesh:schedule-api-2.0.0
         imagePullPolicy : Always
         ports:
         - containerPort: 80
@@ -29,13 +29,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: videos-web-v2
+  name: schedule-api-v2
   labels:
-    app: videos-web-v2
+    app: schedule-api-v2
 spec:
   type: ClusterIP
   selector:
-    app: videos-web-v2
+    app: schedule-api-v2
   ports:
     - protocol: TCP
       name: http
