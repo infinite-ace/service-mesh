@@ -83,7 +83,7 @@ kubectl -n ingress-nginx port-forward deploy/nginx-ingress-controller 80
 
 ## Access our application in the browser
 
-We should be able to access our swagger UI under `http://servicemesh.demo:81/swagger-ui.html`
+We should be able to access our swagger UI under `http://servicemesh.demo/swagger-ui.html`
 
 <br/>
 <hr/>
