@@ -31,8 +31,9 @@ docker-compose down
 Lets create a Kubernetes cluster to play with using [kind](https://kind.sigs.k8s.io/docs/user/quick-start/)
 
 ```
-kind create cluster --name istio --image kindest/node:v1.19.1
+kind create cluster --name istio --image kindest/node:v1.23.3
 ```
+
 
 ## Deploy our microservices
 
@@ -83,7 +84,7 @@ kubectl -n ingress-nginx port-forward deploy/nginx-ingress-controller 80
 
 ## Access our application in the browser
 
-We should be able to access our swagger UI under `http://servicemesh.demo:81/swagger-ui.html`
+We should be able to access our swagger UI under `http://servicemesh.demo/swagger-ui.html`
 
 <br/>
 <hr/>
