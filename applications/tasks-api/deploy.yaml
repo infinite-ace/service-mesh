@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: tasks-api
-        image: tap/service-mesh:tasks-api-1.0.0
+        image: rbodonyiil/service-mesh:tasks-api-1.0.0
         imagePullPolicy : IfNotPresent
         ports:
         - containerPort: 10011

@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: schedule-api
-        image: tap/service-mesh:schedule-api-1.0.0
+        image: rbodonyiil/service-mesh:schedule-api-1.0.0
         imagePullPolicy : IfNotPresent
         ports:
         - containerPort: 80
