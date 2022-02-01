@@ -6,11 +6,11 @@ services:
     build:
       context: ./applications/tasks-api
     ports:
-    - 80:10010
+    - 82:10011
   schedule-api:
     container_name: schedule-api
     image: tap/service-mesh:schedule-api-1.0.0
     build:
       context: ./applications/schedule-api
     ports:
-    - 82:10010
+    - 80:10010

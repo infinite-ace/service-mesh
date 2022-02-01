@@ -12,5 +12,5 @@ RUN mvn -f /home/app/pom.xml clean package
 #
 FROM openjdk:11-jre-slim
 COPY --from=build /home/app/target/tasks-api-1.0.0.jar /usr/local/lib/tasks-api-1.0.0.jar
-EXPOSE 8080
+EXPOSE 10011
 ENTRYPOINT ["java","-jar","/usr/local/lib/tasks-api-1.0.0.jar"]
