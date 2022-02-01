@@ -2,10 +2,17 @@
 
 ## Dependencies
 
-brew install docker<br/>
-brew install minikube<br/>
-brew install kubectl<br/>
-brew install kind<br/>
+brew install docker
+
+brew install minikube
+
+brew install kubectl
+
+brew install kind
+
+## Make sure that the docker images will be available for K8s
+
+eval $(minikube docker-env)
 
 ## Build our applications
 
@@ -83,9 +90,6 @@ We should be able to access our swagger UI under `http://servicemesh.demo:81/swa
 
 # Getting Started with Istio
 
-Firstly, I like to do most of my work in containers so everything is reproducable <br/>
-and my machine remains clean.
-
 ## Get a container to work in
 <br/>
 Run a small `alpine linux` container where we can install and play with `istio`: <br/>
@@ -149,7 +153,7 @@ There are 2 ways to mesh:
 
 1) Automated Injection:
 
-You can set the `istio-injection=enabled` label on a namespace to have the istio side car automatically injected into any pod that gets created in the labelled namespace
+You can set the `istio-injection=enabled` label on a namespace to have the istio sidecar automatically injected into any pod that gets created in the labelled namespace
 
 This is a more permanent solution:
 Pods will need to be recreated for injection to occur
@@ -189,7 +193,7 @@ Let's run a `curl` loop to generate some traffic to our site </br>
 We'll make a call to `/swagger-ui.html` and to simulate the browser making a call to get the schedules
 
 ```
-While ($true) { curl -UseBasicParsing http://servicemesh.demo/swagger-ui.html; Start-Sleep -Seconds 1;}
+While ($true) { curl -UseBasicParsing http://servicemesh.demo/schedule/all; Start-Sleep -Seconds 1;}
 ```
 
 
