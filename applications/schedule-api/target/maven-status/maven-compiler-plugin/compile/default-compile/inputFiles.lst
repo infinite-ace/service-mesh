@@ -1,0 +1,16 @@
+/Users/bodonyirichard/projects/service-mesh/applications/schedule-api/target/generated-sources/swagger/src/main/java/servicemesh/schedule/invoker/ApiClient.java
+/Users/bodonyirichard/projects/service-mesh/applications/schedule-api/target/generated-sources/swagger/src/main/java/servicemesh/schedule/invoker/RFC3339DateFormat.java
+/Users/bodonyirichard/projects/service-mesh/applications/schedule-api/src/main/java/servicemesh/schedule/config/TasksApiConfig.java
+/Users/bodonyirichard/projects/service-mesh/applications/schedule-api/src/main/java/servicemesh/schedule/config/RestTemplateConfig.java
+/Users/bodonyirichard/projects/service-mesh/applications/schedule-api/src/main/java/servicemesh/schedule/config/SwaggerConfig.java
+/Users/bodonyirichard/projects/service-mesh/applications/schedule-api/target/generated-sources/swagger/src/main/java/servicemesh/schedule/api/TaskControllerApi.java
+/Users/bodonyirichard/projects/service-mesh/applications/schedule-api/target/generated-sources/swagger/src/main/java/servicemesh/schedule/invoker/auth/OAuth.java
+/Users/bodonyirichard/projects/service-mesh/applications/schedule-api/target/generated-sources/swagger/src/main/java/servicemesh/schedule/invoker/auth/HttpBasicAuth.java
+/Users/bodonyirichard/projects/service-mesh/applications/schedule-api/target/generated-sources/swagger/src/main/java/servicemesh/schedule/model/Task.java
+/Users/bodonyirichard/projects/service-mesh/applications/schedule-api/target/generated-sources/swagger/src/main/java/servicemesh/schedule/invoker/auth/ApiKeyAuth.java
+/Users/bodonyirichard/projects/service-mesh/applications/schedule-api/target/generated-sources/swagger/src/main/java/servicemesh/schedule/invoker/auth/OAuthFlow.java
+/Users/bodonyirichard/projects/service-mesh/applications/schedule-api/src/main/java/servicemesh/schedule/dto/Schedule.java
+/Users/bodonyirichard/projects/service-mesh/applications/schedule-api/target/generated-sources/swagger/src/main/java/servicemesh/schedule/invoker/auth/Authentication.java
+/Users/bodonyirichard/projects/service-mesh/applications/schedule-api/src/main/java/servicemesh/schedule/controller/ScheduleController.java
+/Users/bodonyirichard/projects/service-mesh/applications/schedule-api/src/main/java/servicemesh/schedule/service/ScheduleService.java
+/Users/bodonyirichard/projects/service-mesh/applications/schedule-api/src/main/java/servicemesh/schedule/Application.java
