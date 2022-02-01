@@ -5,4 +5,4 @@ logging:
     root: info
 sdk:
   basepath:
-    tasks: http://localhost:10011/
+    tasks: http://tasks-api:10011/
