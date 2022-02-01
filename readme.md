@@ -31,8 +31,9 @@ docker-compose down
 Lets create a Kubernetes cluster to play with using [kind](https://kind.sigs.k8s.io/docs/user/quick-start/)
 
 ```
-kind create cluster --name istio --image kindest/node:v1.19.1
+kind create cluster --name istio --image kindest/node:v1.23.3
 ```
+
 
 ## Deploy our microservices
 
